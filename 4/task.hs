@@ -8,16 +8,15 @@ data Square = U Int | M Int
 main2 :: IO ()
 main2 = do
   indata <- filter ((0 <) . length) . lines <$> readFile "input.txt"
-  let draws  = map (read :: String -> Int) $ splitBy ',' $ head indata
+  let draws  = map read $ splitBy ',' $ head indata
   let boards = readBoards $ tail indata
   let (losing_draw, losing_board) = findLoser draws boards
   print $ losing_draw * computeScore losing_board
 
-
 main1 :: IO ()
 main1 = do
   indata <- filter ((0 <) . length) . lines <$> readFile "input.txt"
-  let draws  = map (read :: String -> Int) $ splitBy ',' $ head indata
+  let draws  = map read $ splitBy ',' $ head indata
   let boards = readBoards $ tail indata
   let (winning_draw, winning_board) = findWinner draws boards
   print $ winning_draw * computeScore winning_board
@@ -84,7 +83,4 @@ readBoard :: [String] -> Board
 readBoard = map readRow
 
 readRow :: String -> Row
-readRow = map (U . readInt) . words
-
-readInt :: String -> Int
-readInt = read :: String -> Int
+readRow = map (U . read) . words
