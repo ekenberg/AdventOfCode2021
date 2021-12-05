@@ -29,6 +29,7 @@ countBadCoords :: (Int -> Bool) -> (Pos -> Pos -> [Pos]) -> [[Pos]] -> Int
 countBadCoords flt c2l = length . filter flt . map length .
                          group . sort . concatMap (\ps -> c2l (head ps) (last ps))
 
+-- all positions between two endpoints inclusive, also diagonals (at 45 degree angle)
 coordsToAnyLine :: Pos -> Pos -> [Pos]
 coordsToAnyLine p1@(Pos x1 y1) p2@(Pos x2 y2)
   | null l    = [Pos x y | (x, y) <- zip (range x1 x2) (range y1 y2)]
