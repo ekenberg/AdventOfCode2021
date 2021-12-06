@@ -24,7 +24,7 @@ freqParse = freqParse' 0 . group . sort
       | head xs == n = length xs : freqParse' (n+1) xss
       | otherwise    = 0 : freqParse' (n+1) xx
 
-freqTick :: [Int] -> [Int]
+freqTick :: [Freq] -> [Freq]
 freqTick [a,b,c,d,e,f,g,h,i] = [b,c,d,e,f,g,a+h,i,a]
 
 splitBy delim = foldr f [[]]
